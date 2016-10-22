@@ -7,31 +7,31 @@ exports.handler = function( event, context ) {
     var say = "";
     var endsession = false;
     var sessionAttributes = {};
-    var myColor = "brown";
-    var myAnimal = "bear";
+    var mySystoric = "";
+    var myDestolic = "";
 
     if (event.session.attributes) {
         sessionAttributes = event.session.attributes;
     }
 
     if (event.request.type === "LaunchRequest") {
-        say = "Welcome! Brown bear, brown bear, what do you see?";
+        say = "Hello, what is your Systoric and Destolic blood pressure";
 
     } else {
         var IntentName = event.request.intent.name;
 
-        if (IntentName === "ISeeIntent") {
+        if (IntentName === "RecordBloodPressureReadingIntent") {
 
             if(event.request.intent.slots.Color.value && event.request.intent.slots.Animal.value) {
 
-                myColor  = event.request.intent.slots.Color.value;
-                myAnimal = event.request.intent.slots.Animal.value;
+                mySystoric  = event.request.intent.slots.Systolic.value;
+                myDestolic = event.request.intent.slots.Diastolic.value;
 
                 if (!sessionAttributes.myList)  {sessionAttributes.myList = []; }
 
-                sessionAttributes.myList.push(myColor + " " + myAnimal);
+                sessionAttributes.myList.push(mySystoric + " " + myDestolic);
 
-                say = myColor + " " + myAnimal + ", " + myColor + " " + myAnimal +  ", what do you see? ";
+                say = mySystoric + " " + myDestolic + ", " + mySystoric + " " + myDestolic +  ", what do you see? ";
 
             } else {
                 say = "you can say things like, I see a red bird looking at me";
