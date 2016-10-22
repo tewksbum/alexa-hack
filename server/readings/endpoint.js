@@ -7,30 +7,35 @@ if (Meteor.isServer) {
 
   // Global API configuration
   var Api = new Restivus({
-    useDefaultAuth: true,
+    // useDefaultAuth: true,
     prettyJson: true
   });
 
-  // Generates: GET, POST on /api/readings and GET, PUT, DELETE on
-  // /api/readings/:id for the Readings collection
-  Api.addCollection(Readings);
-
-  // Generates: POST on /api/users and GET, DELETE /api/users/:id for
-  // Meteor.users collection
-  // Api.addCollection(Meteor.users, {
-  //   excludedEndpoints: ['getAll', 'put'],
-  //   routeOptions: {
-  //     authRequired: false
-  //   },
-  //   endpoints: {
-  //     post: {
-  //       authRequired: false
-  //     },
-  //     delete: {
-  //       roleRequired: 'admin'
-  //     }
-  //   }
-  // });
+  Api.addCollection(Readings, {
+    routeOptions: {
+      authRequired: false
+    },
+    endpoints: {
+      post: {
+        authRequired: false,
+        action: function () {
+          console.log("params: ", this.bodyParams);
+          console.log("systolic: ", this.bodyParams.systolic);
+          console.log("userId: ", this.bodyParams.userId);
+          if (Readings.insert(this.bodyParams)) {
+            if (Number(this.bodyParams) > 10 ) {
+              console.log("greater than 10");
+            }
+            return {status: 'success', data: {message: 'Readings saved'}};
+          }
+          return {
+            statusCode: 404,
+            body: {status: 'fail', message: 'Was not able to record readings for Moe'}
+          };
+        }
+      },
+    }
+  });
 
   // Maps to: /api/articles/:id
   // Api.addRoute('articles/:id', {authRequired: true}, {

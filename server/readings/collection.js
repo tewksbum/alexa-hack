@@ -6,19 +6,15 @@ const Readings = new Mongo.Collection('readings');
 SimpleSchema.debug = true;
 
 const Schema = new SimpleSchema({
-  reading: {
-    type: [Object],
-    optional: true,
-  },
-  'reading.$.distolic': {
+  diastolic: {
     type: String,
     optional: true,
   },
-  'reading.$.systemic': {
+  systolic: {
     type: String,
     optional: true,
   },
-  'reading.$.pulse': {
+  pulse: {
     type: String,
     optional: true,
   },
@@ -29,7 +25,7 @@ const Schema = new SimpleSchema({
   userId: {
     type: String,
     optional: true,
-    regEx: SimpleSchema.RegEx.Id,
+    // regEx: SimpleSchema.RegEx.Id,
   },
 });
 
