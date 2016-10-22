@@ -5,6 +5,14 @@
     "start": "meteor run"
   },
   "dependencies": {
-    "meteor-node-stubs": "~0.2.0"
+    "chart.js": "^2.3.0",
+    "material-ui": "^0.16.1",
+    "meteor-node-stubs": "~0.2.0",
+    "react": "^15.3.2",
+    "react-chartjs2": "^1.1.0",
+    "react-dom": "^15.3.2",
+    "react-komposer": "^1.13.1",
+    "react-mounter": "^1.2.0",
+    "react-tap-event-plugin": "^1.0.0"
   }
 }
