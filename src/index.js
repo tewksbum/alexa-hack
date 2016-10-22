@@ -82,40 +82,27 @@ Fact.prototype.intentHandlers = {
 
 function handleHelpRequest(response) {
     //response.ask("I need two blood pressure readings, systolic and diastolic, please tell me your blood pressure with both numbers.?", "What can I help you with?");
-    response.tell("I need two blood pressure readings, systolic and diastolic, please tell me your blood pressure with both numbers.?");
-}
-
-/*
-Great news, {Systolic} over {Diastolic} is considered a normal blood pressure. 
-Response {Systolic} over {Diastolic} is slightly above normal and is considered pre hyper tension.  
-Response {Systolic} over {Diastolic} is considered high blood pressure.  You have stage 1 hyper tension and need to monitor your blood pressure.
-Response {Systolic} over {Diastolic} is significantly high blood pressure.  You are in stage 2 hypertension which can be dangerous.  Closely monitor your health.
-Response {Systolic} over {Diastolic} is estremely high blood pressure.  You are experiencing a hyper tension crisis.   You need urgent care immediately.   Would you like me to call an ambulance?
-*/
-
-function buildBloodPressureStatusResponse(systolic,diastolic) {
-    
+    response.ask("I need two blood pressure readings, systolic and diastolic, please tell me your blood pressure with both numbers.");
 }
 
 /**
  * Gets a random new fact from the list and returns to the user.
  */
 function handleRecordBloodPressureReadingRequest(intent,response) {
-    
-
     // Get a random space fact from the space facts list
 
     if ((intent.slots && intent.slots.Systolic && intent.slots.Systolic.value) && (intent.slots && intent.slots.Diastolic && intent.slots.Diastolic.value)) {
        console.log("Found " + intent.slots.Systolic + " over " + intent.slots.Diastolic);
+        // Create speech output
+        var speechOutput = "got " + intent.slots.Systolic.value + " over " + intent.slots.Diastolic.value;
+        response.tell(speechOutput);
     }
     else {
         console.log("Couldn't find both numbers");
         handleHelpRequest(response);
     }
 
-    // Create speech output
-    var speechOutput = "got " + intent.slots.Systolic.value + " over " + intent.slots.Diastolic.value;
-    response.tell(speechOutput);
+   
 }
 
 // Create the handler that responds to the Alexa Request.
