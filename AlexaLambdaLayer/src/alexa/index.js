@@ -93,6 +93,11 @@ function handleRecordBloodPressureReadingRequest(intent,response) {
         // Create speech output
         var speechOutput = "got " + intent.slots.Systolic.value + " over " + intent.slots.Diastolic.value;
         response.tell(speechOutput);
+
+        var speechJson = {
+            "systolicValue": " ' " + intent.slots.Systolic.value + " ' ", 
+            "diastolicValue":" ' " + intent.slots.Diastolic.value + " ' "
+        }
     }
     else {
         console.log("Couldn't find both numbers");
