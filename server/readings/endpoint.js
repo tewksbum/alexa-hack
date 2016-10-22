@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
-import Readings from '/server/readings/collection';
+import Readings from '/both/readings/collection';
 
 if (Meteor.isServer) {
 

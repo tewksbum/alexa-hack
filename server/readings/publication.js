@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import Readings from '/server/readings/collection';
+import Readings from '/both/readings/collection';
 
 Meteor.publish('readings/All', () => {
   return Readings.find();
