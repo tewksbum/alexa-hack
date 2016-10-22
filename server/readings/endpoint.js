@@ -1,10 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
-import BloodPressure from '/server/bloodpressure/collection';
-
-Items = new Mongo.Collection('items');
-Articles = new Mongo.Collection('articles');
+import Readings from '/server/readings/collection';
 
 if (Meteor.isServer) {
 
@@ -14,9 +11,9 @@ if (Meteor.isServer) {
     prettyJson: true
   });
 
-  // Generates: GET, POST on /api/items and GET, PUT, DELETE on
-  // /api/items/:id for the Items collection
-  Api.addCollection(BloodPressure);
+  // Generates: GET, POST on /api/readings and GET, PUT, DELETE on
+  // /api/readings/:id for the Readings collection
+  Api.addCollection(Readings);
 
   // Generates: POST on /api/users and GET, DELETE /api/users/:id for
   // Meteor.users collection

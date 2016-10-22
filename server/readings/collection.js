@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 
-const BloodPressure = new Mongo.Collection('bloodpressure');
+const Readings = new Mongo.Collection('readings');
 
 SimpleSchema.debug = true;
 
@@ -22,7 +22,7 @@ const Schema = new SimpleSchema({
     type: String,
     optional: true,
   },
-  'reading.$.timestamp': {
+  timestamp: {
     type: String,
     optional: true,
   },
@@ -33,6 +33,6 @@ const Schema = new SimpleSchema({
   },
 });
 
-BloodPressure.attachSchema(Schema);
+Readings.attachSchema(Schema);
 
-export default BloodPressure;
+export default Readings;
