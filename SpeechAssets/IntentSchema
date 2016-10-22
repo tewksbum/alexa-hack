@@ -1,0 +1,26 @@
+{
+  "intents": [
+    {
+      "intent": "RecordBloodPressureReadingIntent",
+      "slots": [
+        {
+          "name": "Systolic",
+          "type": "AMAZON.NUMBER"
+        },
+        {
+          "name": "Diastolic",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+ }

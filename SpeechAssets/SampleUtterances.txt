@@ -1,0 +1,6 @@
+RecordBloodPressureReadingIntent record {Systolic} over {Diastolic}
+RecordBloodPressureReadingIntent is {Systolic} over {Diastolic}
+RecordBloodPressureReadingIntent my blood pressure is {Systolic} over {Diastolic}
+RecordBloodPressureReadingIntent my blood pressure is {Systolic} and {Diastolic}
+RecordBloodPressureReadingIntent my blood pressure reading is {Systolic} and {Diastolic}
+RecordBloodPressureReadingIntent please record my blood pressure {Systolic} and {Diastolic}
