@@ -1,0 +1,14 @@
+
+MyBloodPressure is {Systolic} over {Diastolic}
+MyBloodPressure my blood pressure is {Systolic} over {Diastolic}
+MyBloodPressure my blood pressure reading is {Systolic} over {Diastolic}
+MyBloodPressure my blood pressure readings are {Systolic} and {Diastolic}
+MyBloodPressure please record my blood pressure as {Systolic} over {Diastolic}
+
+NeedTwoReadings I need two blood pressure readings the systoic and diastolic reading please tell me your blood pressure again with both numbers.
+
+Response Great news, {Systolic} over {Diastolic} is considered a normal blood pressure. 
+Response {Systolic} over {Diastolic} is slightly above normal and is considered pre hyper tension.  
+Response {Systolic} over {Diastolic} is considered high blood pressure.  You have stage 1 hyper tension and need to monitor your blood pressure.
+Response {Systolic} over {Diastolic} is significantly high blood pressure.  You are in stage 2 hypertension which can be dangerous.  Closely monitor your health.
+Response {Systolic} over {Diastolic} is estremely high blood pressure.  You are experiencing a hyper tension crisis.   You need urgent care immediately.   Would you like me to call an ambulance?
