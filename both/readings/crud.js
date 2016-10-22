@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import Readings from '/server/readings/collection';
+import Readings from '/both/readings/collection';
 import { check } from 'meteor/check';
 
 Meteor.methods({
