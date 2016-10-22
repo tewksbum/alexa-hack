@@ -21,12 +21,25 @@ if (Meteor.isServer) {
         action: function () {
           console.log("params: ", this.bodyParams);
           console.log("systolic: ", this.bodyParams.systolic);
-          console.log("userId: ", this.bodyParams.userId);
           if (Readings.insert(this.bodyParams)) {
-            if (Number(this.bodyParams) > 10 ) {
-              console.log("greater than 10");
+            if ((Number(this.bodyParams.systolic) < 121) && (Number(this.bodyParams.diastolic) < 81)) {
+              console.log("Normal");
+              return {status: 'success', data: {message: 'Normal'}};
             }
-            return {status: 'success', data: {message: 'Readings saved'}};
+            if ((Number(this.bodyParams.systolic) > 179) || (Number(this.bodyParams.diastolic) > 109)) {
+              console.log("Hypertensive Crisis - Go To Hospital");
+              return {status: 'success', data: {message: 'Hypertensive Crisis - Go To Hospital'}};
+            }
+            if ((Number(this.bodyParams.systolic) > 159) || (Number(this.bodyParams.diastolic) > 99)) {
+              console.log("High Blood Pressure Stage 2");
+              return {status: 'success', data: {message: 'High Blood Pressure Stage 2'}};
+            }
+            if ((Number(this.bodyParams.systolic) > 139) || (Number(this.bodyParams.diastolic) > 89)) {
+              console.log("High Blood Pressure Stage 1");
+              return {status: 'success', data: {message: 'High Blood Pressure Stage 1'}};
+            }
+            console.log("Prehypertension");
+            return {status: 'success', data: {message: 'Prehypertension'}};
           }
           return {
             statusCode: 404,
@@ -36,24 +49,4 @@ if (Meteor.isServer) {
       },
     }
   });
-
-  // Maps to: /api/articles/:id
-  // Api.addRoute('articles/:id', {authRequired: true}, {
-  //   get: function () {
-  //     return Articles.findOne(this.urlParams.id);
-  //   },
-  //   delete: {
-  //     roleRequired: ['author', 'admin'],
-  //     action: function () {
-  //       if (Articles.remove(this.urlParams.id)) {
-  //         return {status: 'success', data: {message: 'Article removed'}};
-  //       }
-  //       return {
-  //         statusCode: 404,
-  //         body: {status: 'fail', message: 'Article not found'}
-  //       };
-  //     }
-  //   }
-  // });
-
 }
