@@ -91,11 +91,63 @@ function handleHelpRequest(response) {
 function handleRecordBloodPressureReadingRequest(intent,response) {
     // Get a random space fact from the space facts list
 
+
     if ((intent.slots && intent.slots.Systolic && intent.slots.Systolic.value) && (intent.slots && intent.slots.Diastolic && intent.slots.Diastolic.value)) {
-       console.log("Found " + intent.slots.Systolic + " over " + intent.slots.Diastolic);
-        // Create speech output
-        var speechOutput = "got " + intent.slots.Systolic.value + " over " + intent.slots.Diastolic.value;
+       console.log("Found " + intent.slots.Systolic.value + " over " + intent.slots.Diastolic.value);
+       
+    var http = require('http');
+var querystring = require('querystring');
+    
+    var post_data = querystring.stringify({
+      'systolic' : intent.slots.Systolic.value,
+      'diastolic': intent.slots.Diastolic
+  });
+
+  // An object of options to indicate where to post to
+  var post_options = {
+      host: 'alexaphillyhack.herokuapp.com',
+      port: '80',
+      path: '/api/readings',
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Length': Buffer.byteLength(post_data)
+      }
+  };
+
+  // Set up the request
+  var post_req = http.request(post_options, function(res) {
+      res.setEncoding('utf8');
+      res.on('data', function (chunk) {
+          console.log('Response: ' + chunk);
+          var speechOutput;
+          
+          if (intent.slots.Systolic.value > 180) {
+              speechOutput = "if you're reading was " + intent.slots.Systolic.value + " over " + intent.slots.Diastolic.value + " you should go to the emergency room. Can I call you an ambulance?"
+          }
+          else {
+              if (intent.slots.Systolic.value < 120) {
+              //speechOutput = "got " + intent.slots.Systolic.value + " over " + intent.slots.Diastolic.value;
+              speechOutput = "you're reading of " + intent.slots.Systolic.value + " over " + intent.slots.Diastolic.value + " is Normal";
+              }
+              else {
+                speechOutput = "you're reading of " + intent.slots.Systolic.value + " over " + intent.slots.Diastolic.value + " is Prehypertensive";
+                
+              }
+          }
+          
+          
         response.tell(speechOutput);
+      });
+  });
+
+  // post the data
+  post_req.write(post_data);
+  post_req.end();
+
+
+    
+        
     }
     else {
         console.log("Couldn't find both numbers");
